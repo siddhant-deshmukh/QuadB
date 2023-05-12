@@ -17,7 +17,7 @@ export default {
         'cyan' : '#6ccacb'
       },
       colors : {
-        'cyan' : '#6ccacb'
+        'cyan' : '#3dc6c1'
       }
     },
   },

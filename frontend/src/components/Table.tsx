@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { DataList } from '../App'
+import { convertNumToInr } from '../utils/convertNumToString'
+import { useLocation } from 'react-router-dom'
 
-const Table = () => {
+const Table = ({dataList}:{
+  dataList : DataList[]
+}) => {
+
+  // const [dataList,setDataList] = useState<DataList[] | null>(null)
+
+  
+
+  
+  if(!dataList){
+    return (
+      <div>
+        Loading
+      </div>
+    )
+  }
   return (
     <div className='max-w-full w-full overflow-x-auto'>
-      <table className='dark:text-white w-full max-w-full'>
+      <table className='dark:text-white w-full max-w-full min-h-full'>
         <thead className=''>
           <tr>
             <th>#</th>
@@ -15,29 +33,29 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          <Row />
+          {
+            dataList.map((ele)=>{
+              return <Row rowData={ele}/>
+            })
+          }
         </tbody>
       </table>
     </div>
   )
 }
-function Row({sr_num, platform, last, buy, sell, difference,savings}:{
-  sr_num : number,
-  platform : string,
-  last : string,
-  buy : string,
-  sell : string,
-  difference : number,
-  savings : number
-}) {
+function Row({rowData}:{rowData: DataList}) {
+  const {index, platform, last, buy, sell, diff,savings} = rowData
   return (
     <tr>
-      <td>{sr_num}</td>
-      <td>{platform}</td>
-      <td>₹ {last}</td>
-      <td>₹ {buy} / ₹ {sell}</td>
-      <td>-{difference} %</td>
-      <td>▼ ₹ {savings}</td>
+      <td>{index}</td>
+      <td className='flex space-x-2 items-center place-content-center'>
+        <img src='/wazirx.png' className='aspect-square rounded-full w-6 h-6'/>
+        <span>WazirX</span>
+      </td>
+      <td>₹ {convertNumToInr(last)}</td>
+      <td>₹ {convertNumToInr(buy)} / ₹ {convertNumToInr(sell)}</td>
+      <td className={`${(diff<0)?'text-red-500':'text-cyan'}`} >{diff} %</td>
+      <td className={`${(savings<0)?'text-red-500':'text-cyan'}`}>{(savings<0)?'▼':'▲'} ₹ {convertNumToInr(savings)}</td>
     </tr>
   )
 }

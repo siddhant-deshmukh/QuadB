@@ -33,9 +33,16 @@ mongoose.connect(process.env.MONGO_URI)
   .catch((err) => { console.error("Unable to connect database", err) })
 
 
-app.get('/',async (req,res)=>{
-  const data = await Ticker.find({})
-  return res.status(200).json({data})
+app.get('/:base_unit',async (req,res)=>{
+  const base_unit = req.params.base_unit
+  if(!base_unit){
+    return res.status(400).json({msg : 'no base_unit'})
+  }
+  const data = await Ticker.find({base_unit})
+  if(data.length === 0){
+    return res.status(404).json({msg:'unit not found'})
+  }
+  return res.status(200).json(data)
 })
 
 
