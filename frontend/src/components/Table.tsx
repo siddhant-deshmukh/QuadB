@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { DataList } from '../App'
 import { convertNumToInr } from '../utils/convertNumToString'
-import { useLocation } from 'react-router-dom'
 
 const Table = ({dataList}:{
   dataList : DataList[]
 }) => {
 
-  // const [dataList,setDataList] = useState<DataList[] | null>(null)
-
-  
-
-  
   if(!dataList){
     return (
       <div>

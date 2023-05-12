@@ -41,8 +41,30 @@ circle {
   thead {
     @apply  text-xs cu2:text-2xl text-gray-400 text-center;
   }
+  
 }
 
 body {
   font-family: 'Oswald', sans-serif;
+}
+.circle-svg {
+  transform: rotateY(-180deg) rotateZ(-90deg);
+}
+svg circle {
+  stroke-dasharray: 200px;
+  stroke-dashoffset: 0px;
+  stroke-linecap: round;
+  stroke-width: 2px;
+  stroke: white;
+  fill: none;
+  animation: countdown 60s linear infinite forwards;
+}
+
+@keyframes countdown {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 200px;
+  }
 }
