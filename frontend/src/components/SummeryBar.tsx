@@ -5,13 +5,13 @@ import { useLocation } from 'react-router-dom';
 const SummeryBar = ({bestP}:{
   bestP: number
 }) => {
-  
   let location = useLocation();
   let unit = location.pathname.substring(1).toUpperCase()
   if(unit === ''){
-    unit = 'BTC'
+    return (
+      <div></div>
+    )
   }
-
   return (
     <div className='w-full flex items-center px-4 cu1.5:px-10 cu2:px-[5%] justify-between text-gray-400'>
       <FloatDisplayWithTime percent={0.86} time={5} timeUnit='Mins'/>
@@ -32,7 +32,6 @@ function FloatDisplayWithTime({ percent, time, timeUnit}: {
   time : 5 | 1 | 7,
   timeUnit : 'Mins' | 'Hour' | 'Day' | 'Days',
 }) {
-
   let str = percent.toString()
   str.slice(0, str.indexOf('.') + 3)
 
@@ -49,7 +48,6 @@ function FloatDisplayWithTime({ percent, time, timeUnit}: {
   )
 }
 function INRPrice({price}:{price:number}){
-
   let str = convertNumToInr(price)
   return (
     <div className='text-base text-black dark:text-white cu1.5:text-5xl cu2:text-7xl'>

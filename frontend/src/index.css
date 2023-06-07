@@ -2,32 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-.progress-ring__circle {
-  transition: 0.35s;
-  stroke-dasharray: 60;
-  transform: rotate('-90deg');
-  /* transform-origin: 50% 50%; */
+
+body {
+  font-family: 'Oswald', sans-serif;
 }
-
-
-circle {
-  fill: none;
-  stroke-dasharray: 60;
-  stroke-linecap: round;
-}
-
 
 @layer components {
-  /* td {
-    @apply font-semibold text-2xl text-center ;
-  } */
   table{
     border-collapse: separate;
     border-spacing: 0 15px;
     @apply px-0 cu1:px-4
   }
   tbody tr {
-    @apply dark:bg-[#2e3241] bg-gray-100 text-2xl  text-center whitespace-nowrap ;
+    @apply dark:bg-[#2e3241] bg-gray-100 text-sm md:text-2xl  text-center whitespace-nowrap ;
   }
   td {
     @apply p-1.5 cu1:p-3 ;
@@ -44,19 +31,11 @@ circle {
   
 }
 
-body {
-  font-family: 'Oswald', sans-serif;
-}
 .circle-svg {
   transform: rotateY(-180deg) rotateZ(-90deg);
 }
-svg circle {
-  stroke-dasharray: 200px;
-  stroke-dashoffset: 0px;
-  stroke-linecap: round;
-  stroke-width: 2px;
-  stroke: white;
-  fill: none;
+.progress-ring__circle {
+  stroke-dasharray: 91 91;
   animation: countdown 60s linear infinite forwards;
 }
 
@@ -65,6 +44,6 @@ svg circle {
     stroke-dashoffset: 0px;
   }
   to {
-    stroke-dashoffset: 200px;
+    stroke-dashoffset: 91px;
   }
 }

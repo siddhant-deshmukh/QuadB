@@ -17,8 +17,8 @@ function MiddlePart() {
   ]
   let location = useLocation();
   let unit = location.pathname.substring(1).toUpperCase()
-  if(unit === ''){
-    unit = 'BTC'
+  if (unit === '') {
+    unit = 'ALL'
   }
   return (
     <div className='h-full m-0 p-0'>
@@ -41,10 +41,13 @@ function MiddlePart() {
           </svg>
           {
             toogle && <ul className='absolute flex flex-col dark:text-black top-12 rounded-lg left-0 border'>
+              <Link key={unit} to={`/`} className='bg-gray-50 hover:bg-gray-200 w-36 py-1.5 px-4 text-left'>
+                ALL
+              </Link>
               {
                 units.map((unit) => {
                   return (
-                    <Link to={`/${unit}`} className='bg-gray-50 hover:bg-gray-200 w-36 py-1.5 px-4 text-left'>
+                    <Link key={unit} to={`/${unit}`} className='bg-gray-50 hover:bg-gray-200 w-36 py-1.5 px-4 text-left'>
                       {unit.toUpperCase()}
                     </Link>
                   )
